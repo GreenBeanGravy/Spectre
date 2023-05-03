@@ -1,0 +1,17 @@
+configparser
+opencv-python
+torch
+numpy
+os-win
+pyautogui
+pygame
+keyboard
+scipy
+termcolor
+Pillow
+dlib
+winsound
+threading
+accessible-output2
+soundfile
+PyAudio
