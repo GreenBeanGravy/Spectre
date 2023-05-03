@@ -1,2 +1,2 @@
 # Spectre
-Spectre is a Python script that leverages the power of YOLOv5 with the sole purpose of adding further accessibility to the game Fortnite for the blind and visually impaired.
+Spectre is a Python script that leverages the power of YOLOv5 with the sole purpose of adding further accessibility to the game Fortnite for the blind and visually impaired. Spectre is in it's very early stages of development, and currently operates as a proof-of-concept. That doesn't mean Spectre isn't currently able to provide accessiblity, however it is fairly slow and doesn't currently offer the features I want to add in the future. If you stumble apon this repo, tell your friends! Start this repo and Watch it, you won't want to miss the updates!!!
