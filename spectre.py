@@ -200,7 +200,7 @@ class YOLOv5ScreenDetector:
         self.detection_window_option = detection_window_option
         self.detection_duration_threshold = detection_duration_threshold
         self.center_radius = center_radius
-        self.optimal_border_option = (100, 300, 1600, 900)
+        self.optimal_border_option = (200, 200, 1600, 800)
         self.confidence_threshold = confidence_threshold
         self.show_detections_window = show_detections_window
 
@@ -262,7 +262,7 @@ class YOLOv5ScreenDetector:
         screen_np = cv2.cvtColor(screen_np, cv2.COLOR_RGB2BGR)
 
         # Crop the screen to the detection area
-        x1, y1, x2, y2 = self.detection_window_option
+        x1, y1, x2, y2 = self.optimal_border_option
         detection_area_np = screen_np[y1:y2, x1:x2]
 
         results = self.model(detection_area_np)
@@ -281,7 +281,7 @@ class YOLOv5ScreenDetector:
 
             # Define the ignored region based on the chosen detection window option
             if self.detection_window_option == (100, 300, 1600, 900):
-                ignored_x1, ignored_y1, ignored_x2, ignored_y2 = 600, 600, 800, 800
+                ignored_x1, ignored_y1, ignored_x2, ignored_y2 = 675, 600, 800, 800
             else:
                 ignored_x1, ignored_y1, ignored_x2, ignored_y2 = -1, -1, -1, -1
 
@@ -443,12 +443,12 @@ class YOLOv5ScreenDetector:
                           (screen_width // 2 + self.center_radius, screen_height // 2 + self.center_radius), (255, 0, 0), 2)
     
             # Draw the detection area outline
-            x1, y1, x2, y2 = self.detection_window_option
+            x1, y1, x2, y2 = self.optimal_border_option
             cv2.rectangle(screen_np, (x1, y1), (x2, y2), (0, 255, 255), 2)
 
             # Draw the bounding box
             if self.detection_window_option == (100, 300, 1600, 900):
-                cv2.rectangle(screen_np, (600, 600), (800, 800), (100, 0, 255), 2)
+                cv2.rectangle(screen_np, (675, 600), (800, 800), (100, 0, 255), 2)
 
             if cv2.waitKey(1) == ord('q'):
                 break
