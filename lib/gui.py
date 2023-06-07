@@ -3,19 +3,28 @@ import tkinter as tk
 from tkinter import ttk
 from lib.panning import speaker
 
+def get_current_values(duration_var, center_radius_var, show_detections_var, confidence_var):
+    duration = duration_var.get()
+    center_radius = center_radius_var.get()
+    show_detections = show_detections_var.get()
+    confidence = confidence_var.get()
+
+    return duration, center_radius, show_detections, confidence
+
 def create_tkinter_gui(settings, detector):
 
     def apply_settings():
-        settings["General"]["duration_threshold"] = duration_var.get()
-        settings["General"]["center_radius"] = center_radius_var.get()
-        settings["General"]["show_detections_window"] = str(show_detections_var.get())
-        settings["General"]["confidence_threshold"] = confidence_var.get()
+        duration, center_radius, show_detections, confidence = get_current_values(duration_var, center_radius_var, show_detections_var, confidence_var)
+        settings["General"]["duration_threshold"] = duration
+        settings["General"]["center_radius"] = center_radius
+        settings["General"]["show_detections_window"] = str(show_detections)
+        settings["General"]["confidence_threshold"] = confidence
     
         # Apply Settings when the "Apply" button is pressed
-        detector.detection_duration_threshold = float(settings["General"]["duration_threshold"])
-        detector.center_radius = int(settings["General"]["center_radius"])
-        detector.show_detections_window = settings["General"]["show_detections_window"].lower() == "true"
-        detector.confidence_threshold = float(settings["General"]["confidence_threshold"])
+        detector.detection_duration_threshold = float(duration)
+        detector.center_radius = int(center_radius)
+        detector.show_detections_window = show_detections.lower() == "true"
+        detector.confidence_threshold = float(confidence)
 
     def save_and_apply_settings():
         apply_settings()
@@ -66,10 +75,10 @@ def create_tkinter_gui(settings, detector):
     show_detections_label.bind('<Enter>', lambda e: speaker.speak("Show Detections Window"))
     confidence_label.bind('<Enter>', lambda e: speaker.speak("Confidence Threshold (0 to 1)"))
     
-    duration_entry.bind('<FocusIn>', lambda e: speaker.speak("Edit Box, Duration Threshold (0 to 1)"))
-    center_radius_entry.bind('<FocusIn>', lambda e: speaker.speak("Edit Box, Center Radius (in pixels)"))
-    show_detections_checkbutton.bind('<FocusIn>', lambda e: speaker.speak(f"Checkbox, Show Detections Window, {'checked' if show_detections_var.get() else 'not checked'}"))
-    confidence_entry.bind('<FocusIn>', lambda e: speaker.speak("Edit Box, Confidence Threshold (0 to 1)"))
+    duration_entry.bind('<FocusIn>', lambda e: speaker.speak(f"Duration Threshold (0 to 1), Edit Box, {duration_var.get()}"))
+    center_radius_entry.bind('<FocusIn>', lambda e: speaker.speak(f"Center Radius (in pixels), Edit Box, {center_radius_var.get()}"))
+    show_detections_checkbutton.bind('<FocusIn>', lambda e: speaker.speak(f"Show Detections Window, Checkbox {'checked' if show_detections_var.get() else 'not checked'}"))
+    confidence_entry.bind('<FocusIn>', lambda e: speaker.speak(f"Confidence Threshold (0 to 1), Edit Box, {confidence_var.get()}"))
     apply_button.bind('<FocusIn>', lambda e: speaker.speak("Apply, Button"))
     save_button.bind('<FocusIn>', lambda e: speaker.speak("Save, Button"))
     
