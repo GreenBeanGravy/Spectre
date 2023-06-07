@@ -23,7 +23,7 @@ def create_tkinter_gui(settings, detector):
         # Apply Settings when the "Apply" button is pressed
         detector.detection_duration_threshold = float(duration)
         detector.center_radius = int(center_radius)
-        detector.show_detections_window = show_detections.lower() == "true"
+        detector.show_detections_window = show_detections
         detector.confidence_threshold = float(confidence)
 
     def save_and_apply_settings():
