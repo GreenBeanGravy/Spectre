@@ -26,6 +26,7 @@ Please note that Spectre is currently in its early stages of development and ope
 * Expand the range of detectable objects and events in the game.
 * Enhance the audio feedback system for better user experience.
 * Add more customizable settings for users.
+* Add some elements to the GUI to allow users to change the keybinds that Spectre uses.
 * ~~Remove some redundant and/or useless options.~~
 
 ## Installation and Setup
