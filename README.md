@@ -3,7 +3,7 @@
 ## About
 Spectre is a Python script designed to enhance the accessibility of the popular game Fortnite for the blind and visually impaired. By leveraging the power of the YOLOv5 machine learning model, it provides real-time detection of players in the game, offering a new level of accessibility to these individuals. Spectre is compatible with many popular screen readers such as NVDA.
 
-Please note that Spectre is currently in its early stages of development and operates primarily as a proof of concept. However, it is capable of providing some level of accessibility, despite its current limitations in speed and feature-set.
+Please note that Spectre is currently in its early stages of development and operates primarily as a proof of concept. However, it is capable of providing some level of accessibility, despite its current limitations in speed and feature-set. I currently do not have any form of tutorial on how to use Spectre.
 
 ## Features
 * Real-time player detection in Fortnite using YOLOv5 machine learning model.
@@ -17,6 +17,7 @@ Please note that Spectre is currently in its early stages of development and ope
 * Expand the range of detectable objects and events in the game.
 * Enhance the audio feedback system for better user experience.
 * Add more customizable settings for users.
+* Remove some redundant and/or useless options.
 
 ## Installation and Setup
 1. Clone the repository.
