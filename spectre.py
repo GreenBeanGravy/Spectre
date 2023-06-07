@@ -23,7 +23,7 @@ import torch
 from lib.gui import create_tkinter_gui
 from lib.panning import apply_panning
 from lib.settings import save_settings, load_settings, update_settings, prompt_settings
-from lib.screendetector import YOLOv5ScreenDetector
+from lib.screendetector import detector
 
 
 if __name__ == '__main__':
@@ -40,7 +40,7 @@ if __name__ == '__main__':
     confidence_threshold = float(settings["General"]["confidence_threshold"])
     
     show_detections_window = settings["General"]["show_detections_window"] == "True"
-    detector = YOLOv5ScreenDetector(chosen_option, detection_duration_threshold, center_radius, confidence_threshold, show_detections_window)
+    detector = detector(chosen_option, detection_duration_threshold, center_radius, confidence_threshold, show_detections_window)
 
     threading.Thread(target=create_tkinter_gui, args=(settings, detector)).start()
 
