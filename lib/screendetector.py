@@ -17,7 +17,7 @@ from termcolor import colored
 from lib.panning import apply_panning
 from lib.settings import save_settings, load_settings, update_settings, prompt_settings
 
-class YOLOv5ScreenDetector:
+class detector:
     def __init__(self, detection_window_option, detection_duration_threshold, center_radius, confidence_threshold, show_detections_window):
 
         self.detection_window_option = detection_window_option
