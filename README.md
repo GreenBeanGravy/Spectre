@@ -1,6 +1,6 @@
 # Spectre
 
-## ⚠️ Hardware Requirements
+## ⚠️ Suggested Hardware
 Spectre is a highly resource-intensive application that demands powerful hardware for optimal performance. My testing has been conducted on a variety of systems, with GPUs ranging from the RTX 3060 to the RTX 3080, and CPUs from the i5 12600k to the Ryzen 7 7800x3D. While Spectre can operate on lower-end hardware, the performance will be noticeably slower. Swift audio feedback is crucial for Spectre's effectiveness as a tool, which means the more robust your hardware, the better Spectre will perform.
 
 ## About
