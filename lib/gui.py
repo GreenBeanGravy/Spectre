@@ -68,9 +68,9 @@ def create_tkinter_gui(settings, detector):
             
     # Apply and Save buttons
     apply_button = ttk.Button(frame, text="Apply", command=apply_settings)
-    apply_button.grid(column=0, row=6, pady=(10, 0), sticky="W")
+    apply_button.grid(column=0, row=4, pady=(10, 0), sticky="W")
     save_button = ttk.Button(frame, text="Save", command=save_and_apply_settings)
-    save_button.grid(column=1, row=6, pady=(10, 0), sticky="W")
+    save_button.grid(column=1, row=4, pady=(10, 0), sticky="W")
 
     duration_label.bind('<Enter>', lambda e: speaker.speak("Duration Threshold (0 to 1)"))
     center_radius_label.bind('<Enter>', lambda e: speaker.speak("Center Radius (in pixels)"))
