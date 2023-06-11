@@ -64,15 +64,25 @@ class detector:
         self.trackers = updated_trackers
 
     def detect_objects_on_screen(self):
-        # Take a screenshot of the screen with the custom size
-        screen = pyautogui.screenshot(region=(0, 0, self.detection_area_width, self.detection_area_height))
+        screen_width, screen_height = pyautogui.size()
+        screen_center_x = screen_width // 2
+        screen_center_y = screen_height // 2
+        
+        # Calculate the coordinates for capturing the screenshot
+        x1 = screen_center_x - self.detection_area_width // 2
+        y1 = screen_center_y - self.detection_area_height // 2
+        x2 = x1 + self.detection_area_width
+        y2 = y1 + self.detection_area_height
+    
+        # Take a screenshot of the specified region
+        screen = pyautogui.screenshot(region=(x1, y1, self.detection_area_width, self.detection_area_height))
         screen_np = np.array(screen)
         screen_np = cv2.cvtColor(screen_np, cv2.COLOR_RGB2BGR)
     
         results = self.model(screen_np)
         detections = results.pandas().xyxy[0]
     
-        max_trackers = 3
+        max_trackers = 1
     
         for _, row in detections.iterrows():
             if row['confidence'] < self.confidence_threshold:
@@ -94,7 +104,7 @@ class detector:
         self.update_trackers(screen_np)
     
         return detections, screen_np
-
+        
     def play_sound_based_on_position(self, x_center, y_center, screen_width, screen_height):
         if not self.sound_enabled:
             return
