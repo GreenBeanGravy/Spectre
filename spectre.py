@@ -38,9 +38,12 @@ if __name__ == '__main__':
     center_radius = int(settings["General"]["center_radius"])
     show_detections_window = settings["General"]["show_detections_window"].lower() == "true"
     confidence_threshold = float(settings["General"]["confidence_threshold"])
+
+    detection_area_width = int(settings["General"]["detection_area_width"])
+    detection_area_height = int(settings["General"]["detection_area_height"])
     
     show_detections_window = settings["General"]["show_detections_window"] == "True"
-    detector = detector(chosen_option, detection_duration_threshold, center_radius, confidence_threshold, show_detections_window)
+    detector = detector(chosen_option, detection_duration_threshold, center_radius, confidence_threshold, show_detections_window, detection_area_width, detection_area_height)
 
     threading.Thread(target=create_tkinter_gui, args=(settings, detector)).start()
 
