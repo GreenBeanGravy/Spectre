@@ -27,12 +27,12 @@ Please note that Spectre is currently in its early stages of development and ope
 * Enhance the audio feedback system for better user experience.
 * Add more customizable settings for users.
 * Add some elements to the GUI to allow users to change the keybinds that Spectre uses.
-* ~~Remove some redundant and/or useless options.~~
 
 ## Installation and Setup
-1. Clone the repository.
-2. Run the setup.bat file: `setup.bat`
-3. Run the script: `python spectre.py`
+1. Download the latest release.
+2. Navigate to and extract the downloaded zip file.
+3. Open the extracted folder and open Command Prompt within the folder.
+4. Run the command "pip install -r requirements.txt"
 
 ## Usage
 After running the script, the program will start providing audio feedback for detected players in Fortnite. You can adjust the settings using the GUI that pops up. The settings include detection duration threshold, center radius, and confidence threshold. You can also choose to display a window showing the detections.
