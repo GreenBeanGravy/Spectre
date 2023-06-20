@@ -18,8 +18,7 @@ from lib.panning import apply_panning
 from lib.settings import save_settings, load_settings, update_settings, prompt_settings
 
 class detector:
-    def __init__(self, detection_window_option, detection_duration_threshold, center_radius, confidence_threshold, show_detections_window, detection_area_width, detection_area_height):
-        self.detection_window_option = detection_window_option
+    def __init__(self, detection_duration_threshold, center_radius, confidence_threshold, show_detections_window, detection_area_width, detection_area_height):
         self.detection_duration_threshold = detection_duration_threshold
         self.center_radius = center_radius
         self.confidence_threshold = confidence_threshold
