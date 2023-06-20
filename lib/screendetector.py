@@ -31,6 +31,7 @@ class detector:
         self.detection_times = {}
         self.detection_counter = 0
         self.trackers = {}
+        self.sound_enabled = True
 
         print("[INFO] Loading the neural network model")
         self.model = torch.hub.load('ultralytics/yolov5', 'custom', path='lib/best.pt', force_reload=False)
@@ -39,11 +40,6 @@ class detector:
         else:
             print(colored("[!] CUDA ACCELERATION IS UNAVAILABLE", "red"))
             print(colored("[!] Performance might suffer. CUDA Acceleration only works on NVIDIA GPUs.", "red"))
-
-        self.left_sound = pygame.mixer.Sound("lib/trackingbeeps/trackingleft.wav")
-        self.right_sound = pygame.mixer.Sound("lib/trackingbeeps/trackingright.wav")
-        self.center_sound = pygame.mixer.Sound("lib/trackingbeeps/trackinglocked.wav")
-        self.sound_enabled = True
 
     def reset_trackers(self):
         self.trackers = {}
@@ -137,10 +133,10 @@ class detector:
         # Check if the detection is inside the center_radius
         if (self.detection_area_width / 2 - self.center_radius) < x_center < (self.detection_area_width / 2 + self.center_radius) and \
                 (self.detection_area_height / 2 - self.center_radius) < y_center < (self.detection_area_height / 2 + self.center_radius):
-            audio_file = "lib/trackingbeeps/trackinglocked.wav"
+            audio_file = "lib/trackingsounds/trackinglocked.wav"
             audio_pan = 0.5  # Play the audio in the center
         else:
-            audio_file = "lib/trackingbeeps/tracking.wav"
+            audio_file = "lib/trackingsounds/tracking.wav"
             audio_pan = pan
     
         # Start a separate thread to play the audio
@@ -209,7 +205,7 @@ class detector:
                         winsound.Beep(1000, 200)  # Play a high-pitched beep when sound is enabled
                     else:
                         print("Sound disabled")
-                        winsound.Beep(500, 200)  # Play a low-pitched beep when sound is disabled
+                        winsound.Beep(200, 200)  # Play a low-pitched beep when sound is disabled
                 f5_key_pressed = True
             else:
                 f5_key_pressed = False
