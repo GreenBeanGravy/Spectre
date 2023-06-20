@@ -12,10 +12,12 @@ import tkinter as tk
 import threading
 import soundfile as sf
 import pyaudio
+from accessible_output2.outputs.auto import Auto
 from termcolor import colored
 
 from lib.panning import apply_panning
 from lib.settings import save_settings, load_settings, update_settings, prompt_settings
+speaker = Auto()
 
 class detector:
     def __init__(self, detection_duration_threshold, center_radius, confidence_threshold, show_detections_window, detection_area_width, detection_area_height):
@@ -37,6 +39,8 @@ class detector:
         self.detection_counter = 0
         self.trackers = {}
         self.sound_enabled = True
+
+
 
         print("[INFO] Loading the neural network model")
         self.model = torch.hub.load('ultralytics/yolov5', 'custom', path='lib/best.pt', force_reload=False)
