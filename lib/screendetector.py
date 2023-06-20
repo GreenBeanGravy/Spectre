@@ -26,6 +26,12 @@ class detector:
         self.detection_area_width = detection_area_width
         self.detection_area_height = detection_area_height
 
+        self.ignore_box_x1 = 0
+        self.ignore_box_y1 = self.detection_area_height // 2
+        self.ignore_box_x2 = self.detection_area_width // 4
+        self.ignore_box_y2 = self.detection_area_height
+        self.last_reset_time = time.time()
+
         pygame.mixer.init()
         self.detection_times = {}
         self.detection_counter = 0
@@ -42,6 +48,7 @@ class detector:
 
     def reset_trackers(self):
         self.trackers = {}
+        self.last_reset_time = time.time()
 
     def update_trackers(self, screen_np):
         updated_trackers = {}
@@ -79,11 +86,21 @@ class detector:
     
         max_trackers = 1
     
+        # Draw the ignore box on the bottom left corner
+        cv2.rectangle(screen_np, (self.ignore_box_x1, self.ignore_box_y1), 
+                     (self.ignore_box_x2, self.ignore_box_y2), (0, 0, 255), 2)
+    
         for _, row in detections.iterrows():
+            x1, y1, x2, y2 = int(row['xmin']), int(row['ymin']), int(row['xmax']), int(row['ymax'])
+    
+            # Check if the detection is inside the ignore box
+            if (self.ignore_box_x1 < (x1 + x2) / 2 < self.ignore_box_x2) and (self.ignore_box_y1 < (y1 + y2) / 2 < self.ignore_box_y2):
+                row['confidence'] -= 1  # Decrease the confidence by 1
+                if row['confidence'] < 0:  # Ensure that confidence does not go below 0
+                    row['confidence'] = 0
+    
             if row['confidence'] < self.confidence_threshold:
                 continue
-    
-            x1, y1, x2, y2 = int(row['xmin']), int(row['ymin']), int(row['xmax']), int(row['ymax'])
     
             # Adjust the coordinates to be relative to the custom-sized screenshot
             x1, y1, x2, y2 = x1, y1, x2, y2
@@ -99,6 +116,7 @@ class detector:
         self.update_trackers(screen_np)
     
         return detections, screen_np
+    
         
     def play_sound_based_on_position(self, x_center, y_center, screen_width, screen_height):
         if not self.sound_enabled:
@@ -114,21 +132,27 @@ class detector:
         def play_audio(filename, pan_value):
             # Load the audio file
             data, samplerate = sf.read(filename, dtype='float32')
-    
+        
             # Apply panning
             stereo_data = apply_panning(data, pan_value) * volume_factor
-    
+        
             pa = pyaudio.PyAudio()
-            stream = pa.open(format=pyaudio.paFloat32,
-                             channels=2,
-                             rate=samplerate,
-                             output=True)
-    
-            stream.write(stereo_data.tobytes())
-            stream.stop_stream()
-            stream.close()
-            pa.terminate()
-    
+            try:
+                stream = pa.open(format=pyaudio.paFloat32,
+                                 channels=2,
+                                 rate=samplerate,
+                                 output=True)
+                stream.write(stereo_data.tobytes())
+                stream.stop_stream()
+                stream.close()
+            except OSError as e:
+                error_message = f"Error: An error occurred while trying to play audio: {e}. Restarting..."
+                print(error_message)
+                speaker.speak(error_message)  # Speak the error message
+                os._exit(1)  # Indicate an error occurred with exit status 1
+            finally:
+                pa.terminate()
+        
         # Check if the detection is inside the center_radius
         if (self.detection_area_width / 2 - self.center_radius) < x_center < (self.detection_area_width / 2 + self.center_radius) and \
                 (self.detection_area_height / 2 - self.center_radius) < y_center < (self.detection_area_height / 2 + self.center_radius):
@@ -146,39 +170,43 @@ class detector:
 
     def process_detections(self):
         screen_width, screen_height = pyautogui.size()
-
+    
         current_time = time.time()
-
+    
         closest_detection = None
         min_distance_to_center = float('inf')
-
+    
         for tracker_id, tracker in self.trackers.items():
             pos = tracker.get_position()
             x1, y1, x2, y2 = int(pos.left()), int(pos.top()), int(pos.right()), int(pos.bottom())
-
+    
             x_center = (x1 + x2) / 2
             y_center = (y1 + y2) / 2
-
+    
+            # Ignore if the detection is in the ignore box
+            if self.ignore_box_x1 <= x_center <= self.ignore_box_x2 and self.ignore_box_y1 <= y_center <= self.ignore_box_y2:
+                continue
+    
             if tracker_id not in self.detection_times:
                 self.detection_times[tracker_id] = current_time
-
+    
             time_detected = current_time - self.detection_times[tracker_id]
-
+    
             if time_detected >= self.detection_duration_threshold:
                 distance_to_center = ((x_center - screen_width / 2) ** 2 + (y_center - screen_height / 2) ** 2) ** 0.5
                 if distance_to_center < min_distance_to_center:
                     min_distance_to_center = distance_to_center
                     closest_detection = (x_center, y_center)
-
+    
         if closest_detection is not None:
             self.play_sound_based_on_position(closest_detection[0], closest_detection[1], screen_width, screen_height)
-
+    
         # Remove inactive detections from self.detection_times
         active_detection_ids = set(self.trackers.keys())
         inactive_detection_ids = set(self.detection_times.keys()) - active_detection_ids
         for detection_id in inactive_detection_ids:
             del self.detection_times[detection_id]
-
+    
     def run(self):
         f5_key_pressed = False
 
@@ -213,8 +241,12 @@ class detector:
                 print("Shutting down script...")
                 os._exit(0)  # Terminate the program immediately
 
+            if time.time() - self.last_reset_time >= 1.0:  # check if 1 second has passed
+                self.reset_trackers()
+
             detections, screen_np = self.detect_objects_on_screen()
             self.process_detections()
+
 
             # Draw the blue center zone square
             cv2.rectangle(screen_np, (self.detection_area_width // 2 - self.center_radius, self.detection_area_height // 2 - self.center_radius),
