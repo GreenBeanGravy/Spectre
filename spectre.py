@@ -27,7 +27,6 @@ from lib.screendetector import detector
 
 
 if __name__ == '__main__':
-    chosen_option = (100, 300, 1600, 900)
     settings = load_settings()
     settings = update_settings(settings)
     use_existing_settings = input("Do you want to use existing settings? (y/n): ")
@@ -43,7 +42,7 @@ if __name__ == '__main__':
     detection_area_height = int(settings["General"]["detection_area_height"])
     
     show_detections_window = settings["General"]["show_detections_window"] == "True"
-    detector = detector(chosen_option, detection_duration_threshold, center_radius, confidence_threshold, show_detections_window, detection_area_width, detection_area_height)
+    detector = detector(detection_duration_threshold, center_radius, confidence_threshold, show_detections_window, detection_area_width, detection_area_height)
 
     threading.Thread(target=create_tkinter_gui, args=(settings, detector)).start()
 
