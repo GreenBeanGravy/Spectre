@@ -35,7 +35,7 @@ Please note that Spectre is currently in its early stages of development and ope
 4. Run the command "pip install -r requirements.txt"
 
 ## Usage
-After running the script, the program will start providing audio feedback for detected players in Fortnite. You can adjust the settings using the GUI that pops up. The settings include detection duration threshold, center radius, and confidence threshold. You can also choose to display a window showing the detections.
+Please run the script using the "start_spectre.bat" file.
 
 ## Contributing
 I welcome contributions to Spectre. If you have a feature request, bug report, or proposal for improvement, please open an issue on GitHub. If you want to contribute code, please open a pull request.
