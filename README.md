@@ -16,7 +16,7 @@ Please note that Spectre is currently in its early stages of development and ope
 * GUI for adjusting settings, designed with accessibility in mind.
 
 ## Settings Explanation
-* **Duration Threshold**: This defines how long a detection/player needs to be on screen in order to play a sound. This can be very helpful if the sound is giving you a headache. By default, this is set to 0.01.
+* **Duration Threshold**: This defines how long a detection/player needs to be on screen in order to play a sound. This can be very helpful if the sound is giving you a headache. By default, this is set to 0.05.
 * **Center Radius**: This defines how close a detection/player needs to be to the center of the screen (in pixels) in order to play the "tracking" sound. Lower values are helpful at closer ranges, but severely affect long range accuracy. By default, this is set to 50.
 * **Show Detections Window**: This is a toggle on whether or not the "Detections Window" should be displayed. This was added as a debug tool, but it can be helpful for users as well so I decided to keep it as a feature. By default, this is toggled OFF.
 * **Confidence Threshold**: This defines what the confidence of the neural network should be in order to determine someone/something as a detection/player. Lower values seem to help with longer ranges, but they cause more false detections. By default, this is set to 0.35.
