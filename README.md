@@ -11,9 +11,9 @@ Please note that Spectre is currently in its early stages of development and ope
 ## Features
 * Real-time player detection in Fortnite using YOLOv5 machine learning model.
 * Audio feedback system for detected players.
-* Adjustable settings for detection duration threshold, center radius, and confidence threshold.
+* Customizable settings
 * Option to display a window showing detections. This feature is primarily for debugging purposes but can be useful for users as well.
-* GUI for adjusting settings, designed with accessibility in mind.
+* GUI for adjusting settings in real time, designed with accessibility in mind.
 
 ## Settings Explanation
 * **Duration Threshold**: This defines how long a detection/player needs to be on screen in order to play a sound. This can be very helpful if the sound is giving you a headache. By default, this is set to 0.05.
@@ -22,7 +22,7 @@ Please note that Spectre is currently in its early stages of development and ope
 * **Confidence Threshold**: This defines what the confidence of the neural network should be in order to determine someone/something as a detection/player. Lower values seem to help with longer ranges, but they cause more false detections. By default, this is set to 0.35.
 
 ## Future Improvements
-* Improve speed and efficiency of player detection.
+* ~~Improve speed and efficiency of player detection.~~
 * Expand the range of detectable objects and events in the game.
 * Enhance the audio feedback system for better user experience.
 * Add more customizable settings for users.
