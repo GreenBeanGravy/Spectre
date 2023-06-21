@@ -2,7 +2,7 @@ import numpy as np
 import tkinter as tk
 from accessible_output2.outputs.auto import Auto
 from tkinter import ttk
-from lib.settings import save_settings, load_settings, update_settings, prompt_settings
+from lib.settings import save_settings, load_settings, update_settings
 
 class Speaker:
     def __init__(self):
