@@ -16,7 +16,7 @@ from accessible_output2.outputs.auto import Auto
 from termcolor import colored
 
 from lib.panning import apply_panning
-from lib.settings import save_settings, load_settings, update_settings, prompt_settings
+from lib.settings import save_settings, load_settings, update_settings
 speaker = Auto()
 
 class detector:
