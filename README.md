@@ -1,12 +1,19 @@
 # Spectre
 
-## ⚠️ Suggested Hardware
-Spectre is a highly resource-intensive application that demands powerful hardware for optimal performance. My personal testing has been conducted on a system that uses an RTX 3080. While Spectre can operate on lower-end hardware, the performance will be noticeably slower. Swift audio feedback is crucial for Spectre's effectiveness as a tool, which means the more robust your hardware, the better Spectre will perform.
-
 ## About
 Spectre is a Python script designed to enhance the accessibility of the popular game Fortnite for the blind and visually impaired. By leveraging the power of the YOLOv5 machine learning model, it provides real-time detection of players in the game, offering a new level of accessibility to these individuals. Spectre is compatible with many popular screen readers such as NVDA.
 
-Please note that Spectre is currently in its early stages of development and operates primarily as a proof of concept. However, it is capable of providing some level of accessibility, despite its current limitations in speed and feature-set. I currently do not have any form of tutorial on how to use Spectre.
+## Keybinds
+* **F5**: Toggles player detection on and off. Useful in some cases, such as the Fortnite lobby.
+* **F6**: Closes Spectre.
+* **F7**: Is used to activate the *currently* experimental GUI detection feature. Does not currently work out of the box, but will in a future release.
+  
+## ⚠️ Suggested Hardware
+Spectre is a highly resource-intensive application that demands powerful hardware for optimal performance. My personal testing has been conducted on a system that uses an RTX 3080. While Spectre can operate on lower-end hardware, the performance will suffer. Swift audio feedback is crucial for Spectre's effectiveness as a tool, which means the more robust your hardware, the better Spectre will perform.
+
+Please note that Spectre is currently in its early stages of development. It takes some getting used to and is to be used primarily as an aim assist, do not expect Spectre to do all the leg work for you. I have plans for the future to implement an optional interactive aim assist which would be able to move the mouse for you, but created in a way that doesn't give anyone an unfair advantage. This technically goes against the Fortnite TOS which is why it would be made optional.
+
+
 
 ## Features
 * Real-time player detection in Fortnite using YOLOv5 machine learning model.
@@ -24,7 +31,6 @@ Please note that Spectre is currently in its early stages of development and ope
 ## Future Improvements
 * ~~Improve speed and efficiency of player detection.~~
 * Expand the range of detectable objects and events in the game.
-* Enhance the audio feedback system for better user experience.
 * Add more customizable settings for users.
 * Add some elements to the GUI to allow users to change the keybinds that Spectre uses.
 
