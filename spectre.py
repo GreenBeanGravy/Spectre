@@ -22,16 +22,13 @@ import torch
 
 from lib.gui import create_tkinter_gui
 from lib.panning import apply_panning
-from lib.settings import save_settings, load_settings, update_settings, prompt_settings
+from lib.settings import save_settings, load_settings, update_settings
 from lib.screendetector import detector
 
 
 if __name__ == '__main__':
     settings = load_settings()
     settings = update_settings(settings)
-    use_existing_settings = input("Do you want to use existing settings? (y/n): ")
-    if use_existing_settings.lower() != "y":
-        prompt_settings(settings)
 
     detection_duration_threshold = float(settings["General"]["duration_threshold"])
     center_radius = int(settings["General"]["center_radius"])
