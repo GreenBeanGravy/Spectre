@@ -8,6 +8,7 @@ Please note that Spectre is currently in its early stages of development. It tak
 * **F5**: Toggles player detection on and off. Useful in some cases, such as the Fortnite lobby.
 * **F6**: Closes Spectre.
 * **F7**: Is used to activate the *currently* experimental GUI detection feature. Does not currently work out of the box, but will in a future release.
+* **Space**: Only used in the interactive GUI. Used to press buttons!
   
 ## ⚠️ Suggested Hardware
 Spectre is a highly resource-intensive application that demands powerful hardware for optimal performance. My personal testing has been conducted on a system that uses an RTX 3080. While Spectre can operate on lower-end hardware, the performance will suffer. Swift audio feedback is crucial for Spectre's effectiveness as a tool, which means the more robust your hardware, the better Spectre will perform.
