@@ -13,8 +13,6 @@ Spectre is a highly resource-intensive application that demands powerful hardwar
 
 Please note that Spectre is currently in its early stages of development. It takes some getting used to and is to be used primarily as an aim assist, do not expect Spectre to do all the leg work for you. I have plans for the future to implement an optional interactive aim assist which would be able to move the mouse for you, but created in a way that doesn't give anyone an unfair advantage. This technically goes against the Fortnite TOS which is why it would be made optional.
 
-
-
 ## Features
 * Real-time player detection in Fortnite using YOLOv5 machine learning model.
 * Audio feedback system for detected players.
