@@ -35,7 +35,7 @@ Spectre is a highly resource-intensive application that demands powerful hardwar
 ## Installation and Setup
 1. Download the latest release.
 2. Navigate to and extract the downloaded zip file.
-3. Open the extracted folder and open Command Prompt within the folder.
+3. Open the extracted folder.
 4. Please run the "install_packages.bat" file as admin to install the required libraries to use Spectre. A .whl file is included to install dlib without cmake. THIS IS ONLY FOR PYTHON 3.9!
 
 ## Usage
