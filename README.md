@@ -36,7 +36,7 @@ Spectre is a highly resource-intensive application that demands powerful hardwar
 1. Download the latest release.
 2. Navigate to and extract the downloaded zip file.
 3. Open the extracted folder and open Command Prompt within the folder.
-4. Run the command "pip install -r requirements.txt"
+4. As of now there is no requirements.txt file, it will be added very soon. Until then you can inspect the libraries used in the "Spectre.py" file. For CV2, install "OpenCV" and for YAML, install PYYAML.
 
 ## Usage
 Please run the script using the "start_spectre.bat" file.
