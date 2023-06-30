@@ -36,7 +36,7 @@ Spectre is a highly resource-intensive application that demands powerful hardwar
 1. Download the latest release.
 2. Navigate to and extract the downloaded zip file.
 3. Open the extracted folder and open Command Prompt within the folder.
-4. As of now there is no requirements.txt file, it will be added very soon. Until then you can inspect the libraries used in the "Spectre.py" file. For CV2, install "OpenCV" and for YAML, install PYYAML.
+4. Please run the "install_packages.bat" file as admin to install the required libraries to use Spectre. A .whl file is included to install dlib without cmake. THIS IS ONLY FOR PYTHON 3.9!
 
 ## Usage
 Please run the script using the "start_spectre.bat" file.
