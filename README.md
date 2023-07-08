@@ -32,6 +32,11 @@ Spectre is a highly resource-intensive application that demands powerful hardwar
 * Add more customizable settings for users.
 * Add some elements to the GUI to allow users to change the keybinds that Spectre uses.
 
+## Currently Working On:
+* Vertical detection. This would allow Spectre to give audio feedback for height by changing the pitch of the tracking sound in realtime.
+* Higher accuracy. I am currently working on a new YOLO model (hopefully transitioning to YOLOv8) with significantly more data than the last. This should greatly improve accuracy and potentially speed if the switch to YOLOv8 is made.
+* Keybinds.
+
 ## Installation and Setup
 1. Download the latest release.
 2. Navigate to and extract the downloaded zip file.
